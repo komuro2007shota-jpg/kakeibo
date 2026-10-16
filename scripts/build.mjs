@@ -1,0 +1,10 @@
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+let html=await readFile('index.html','utf8');
+const css=await readFile('style.css','utf8');
+const model=(await readFile('model.js','utf8')).replaceAll('export function ','function ').replaceAll('export const ','const ');
+const app=(await readFile('app.js','utf8')).replace(/^import .*;\n/,'');
+html=html.replace('<link rel="stylesheet" href="style.css">',()=>`<style>${css}</style>`).replace('<script type="module" src="app.js"></script>','');
+html=html.replace('</body>',()=>`<script>\n${model}\n${app}\n</script></body>`);
+await mkdir('dist',{recursive:true});
+await writeFile('dist/家計簿.html',html);
+console.log('Created dist/家計簿.html (offline, no server required)');

@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>こつこつ家計簿</title>
+<style>:root{font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif;color:#263e37;background:#f6f8f5;font-synthesis:none}*{box-sizing:border-box}body{margin:0}header{height:84px;background:#fff;border-bottom:1px solid #e2e8e2;padding:0 max(5%,calc((100vw - 1180px)/2));display:flex;align-items:center;justify-content:space-between;gap:20px}header span{font-size:13px;color:#7a8981}.brand{text-decoration:none;color:#285e48;font-weight:750;font-size:22px;white-space:nowrap}main{max-width:1180px;margin:auto;padding:48px 24px 0}.heading{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:32px}.eyebrow{font-size:11px;letter-spacing:2px;color:#6b8976;font-weight:700}h1{font-size:30px;letter-spacing:.02em;margin:10px 0 12px}h2{font-size:17px;margin:0 0 24px}.muted{color:#7b8881;font-size:13px}.month-label{min-width:175px}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:30px}.summary article{background:#fff;border:1px solid #e2e8e2;border-radius:16px;padding:24px 28px}.summary article:first-child{background:#285e48;color:white;border-color:#285e48}.summary p{font-size:13px;margin:0 0 14px}.summary strong{font-size:32px;font-weight:650;display:block;overflow-wrap:anywhere}.summary small{display:block;margin-top:14px;font-size:11px;opacity:.65}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px}.income{background:#539378}.expense{background:#d99768}.layout{display:grid;grid-template-columns:330px 1fr;gap:24px;align-items:start}.panel{background:#fff;border:1px solid #e2e8e2;border-radius:16px;padding:26px}.details{display:grid;gap:24px}label{display:block;font-size:13px;font-weight:550}input,select{font:inherit;display:block;width:100%;padding:12px;border:1px solid #dbe3dc;border-radius:8px;background:#fff;color:#263e37;margin-top:8px}input:focus,select:focus{outline:2px solid #82aa91;outline-offset:2px}form>label{margin-top:19px}fieldset{border:0;padding:0;margin:0}legend{font-size:13px;margin-bottom:9px}.switch{display:flex;padding:4px;background:#f2f5f1;border-radius:9px;gap:5px}.switch label{flex:1;text-align:center;cursor:pointer;padding:9px;border-radius:6px}.switch label:has(input:checked){background:white;color:#285e48;box-shadow:0 1px 4px #0001}.switch input{display:inline;width:auto;margin:0;accent-color:#285e48}button{font:inherit;cursor:pointer;border:1px solid #dbe3dc;border-radius:8px;padding:10px 16px;background:white;color:#52645a}button:hover{filter:brightness(.95)}button:focus-visible{outline:2px solid #285e48;outline-offset:3px}.primary{width:100%;margin-top:24px;background:#285e48;color:white;padding:13px;border:0;font-weight:600}.privacy{font-size:11px;line-height:1.8;color:#8a958d;border-top:1px solid #edf0eb;padding-top:18px;margin:12px 0 0}#message{font-size:12px;line-height:1.7;margin-bottom:0}.section-title{display:flex;justify-content:space-between;align-items:baseline;gap:15px}.empty{padding:26px 10px;text-align:center;color:#8a958d;font-size:13px;line-height:1.9}.empty-icon{display:block;font-size:29px;margin-bottom:8px;color:#9eafa1}.break-row{margin:17px 0}.break-label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:9px}.bar{height:7px;background:#eff2ed;border-radius:9px;overflow:hidden}.bar span{display:block;height:100%;background:#88a990;border-radius:9px}.record{display:flex;align-items:center;gap:14px;padding:17px 0;border-top:1px solid #edf0eb}.record-icon{background:#f2f5ef;border-radius:12px;padding:12px;font-size:19px}.record-text{flex:1;min-width:0}.record-text strong{font-size:13px;display:block}.record-text p{font-size:12px;color:#879189;margin:5px 0 0;overflow-wrap:anywhere}.record-amount{font-size:15px;font-weight:650;white-space:nowrap}.positive{color:#3d8967}.delete{font-size:11px;border:0;padding:7px;color:#929b95}.delete:hover{color:#b34b43;background:#fff4f2}footer{text-align:center;color:#929e94;font-size:11px;padding:36px 0}dialog{border:1px solid #dbe3dc;border-radius:16px;padding:28px;max-width:calc(100% - 32px)}dialog::backdrop{background:#15291f66}dialog p{font-size:14px;color:#6e7c72}.dialog-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:24px}.danger{background:#a7463e;color:white;border:0}@media(max-width:760px){header{height:70px;padding:0 20px}header span{display:none}main{padding:28px 16px 0}.heading{align-items:start;flex-direction:column;gap:10px}h1{font-size:25px}.month-label{width:100%}.summary{gap:8px}.summary article{padding:17px 12px;border-radius:12px}.summary strong{font-size:21px}.summary small{font-size:10px}.layout{grid-template-columns:1fr}.panel{padding:22px}.record{gap:9px}.record-icon{padding:9px}.record-amount{font-size:13px}}
+.filters{display:grid;grid-template-columns:1fr 130px;gap:12px;margin-bottom:12px}.budget-panel form{display:flex;gap:10px;align-items:end;flex-wrap:wrap}.budget-panel form label{flex:1;min-width:170px}.budget-panel .bar span{transition:width .2s}.over-budget{color:#af5043}.data-tools{margin-top:24px}.tool-buttons{display:flex;flex-wrap:wrap;gap:10px}.edit{font-size:11px;padding:7px;border:0}.record-actions{display:flex;gap:2px}#cancel-edit{margin-top:10px;width:100%}#data-message{font-size:13px;line-height:1.7}.primary:disabled,button:disabled{opacity:.5;cursor:not-allowed}@media(max-width:480px){.filters{grid-template-columns:1fr}.record{flex-wrap:wrap}.record-actions{margin-left:auto}.heading h1{font-size:23px}}
+</style>
+</head>
+<body>
+<header><a href="#" class="brand">◒ こつこつ家計簿</a><span>毎日の記録で、暮らしを整える。</span></header>
+<main>
+<section class="heading"><div><p class="eyebrow">MY HOUSEHOLD BOOK</p><h1>今月のお金を、ひと目で。</h1><p class="muted">小さな支出も、うれしい収入も。ここから記録しましょう。</p></div><label class="month-label">表示する月<input type="month" id="month" required></label></section>
+<section class="summary" aria-label="月の集計"><article><p>収支合計</p><strong id="balance">¥0</strong><small>収入 − 支出</small></article><article><p><span class="dot income"></span>収入</p><strong id="income">¥0</strong><small>今月入ってきたお金</small></article><article><p><span class="dot expense"></span>支出</p><strong id="expense">¥0</strong><small>今月使ったお金</small></article></section>
+<div class="layout"><section class="panel entry"><h2 id="form-title">お金を記録する</h2><form id="entry-form"><fieldset><legend>収支の種類</legend><div class="switch"><label><input type="radio" name="type" value="expense" checked> 支出</label><label><input type="radio" name="type" value="income"> 収入</label></div></fieldset><label>日付<input id="date" type="date" required></label><label>金額（円）<input id="amount" type="number" min="1" max="999999999" step="1" placeholder="例：1,200" required inputmode="numeric"></label><label>カテゴリー<select id="category"></select></label><label>メモ <span class="muted">任意</span><input id="memo" maxlength="100" placeholder="例：スーパーでお買い物"></label><button class="primary" type="submit">＋ 記録を追加</button><button id="cancel-edit" type="button" hidden>編集をキャンセル</button><p id="message" role="status"></p></form><p class="privacy">記録はこのブラウザに保存されます。<br>端末間の同期はありません。</p></section>
+<div class="details"><section class="panel budget-panel"><div class="section-title"><h2>今月の予算</h2><span id="budget-status" class="muted"></span></div><form id="budget-form"><label>月の支出予算（円）<input id="budget" type="number" min="1" max="999999999" step="1" placeholder="未設定"></label><button type="submit">予算を保存</button><button id="clear-budget" type="button">解除</button></form><p id="budget-remaining"></p><div class="bar"><span id="budget-progress"></span></div></section><section class="panel"><div class="section-title"><h2>支出の内訳</h2><span class="muted">カテゴリー別</span></div><div id="breakdown"></div></section><section class="panel"><div class="section-title"><h2>収支の履歴</h2><span id="count" class="muted"></span></div><div class="filters"><label>検索<input id="search" type="search" placeholder="メモ・カテゴリーで検索"></label><label>種類<select id="filter"><option value="all">すべて</option><option value="expense">支出</option><option value="income">収入</option></select></label></div><p id="filter-count" class="muted"></p><div id="history"></div></section></div></div>
+<section class="panel data-tools"><h2>データを管理する</h2><p class="muted">バックアップは全期間の記録と予算を保存します。CSVは表示月の全記録をExcel向けに出力します。</p><div class="tool-buttons"><button id="backup" type="button">バックアップ保存</button><button id="restore" type="button">バックアップから復元</button><button id="csv" type="button">表示月のCSV出力</button></div><input id="restore-file" type="file" accept=".json,application/json" hidden><p id="data-message" role="status"></p></section><dialog id="restore-dialog"><h2>バックアップを復元しますか？</h2><p id="restore-summary"></p><p>全期間の記録と予算が置き換わります。先にバックアップを保存してください。</p><div class="dialog-actions"><button id="cancel-restore">キャンセル</button><button id="confirm-restore" class="danger">置き換えて復元</button></div></dialog><footer>こつこつ記録して、自分らしいお金の使い方を。</footer>
+</main><dialog id="delete-dialog"><h2>この記録を削除しますか？</h2><p>削除した記録は元に戻せません。</p><div class="dialog-actions"><button id="cancel-delete">キャンセル</button><button id="confirm-delete" class="danger">削除する</button></div></dialog>
+<script>
+const categories = {
+  expense: ['食費', '日用品', '交通費', '住居費', '水道・光熱費', '娯楽', '医療・健康', 'その他'],
+  income: ['給与', '副収入', 'その他']
+};
+function validEntry(entry) {
+  if (!entry || !Object.hasOwn(categories,entry.type) || !categories[entry.type]?.includes(entry.category) || (typeof entry.id !== 'string' || !entry.id) || !Number.isSafeInteger(entry.amount) || entry.amount < 1 || entry.amount > 999999999 || typeof entry.memo !== 'string' || entry.memo.length > 100 || typeof entry.date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(entry.date)) return false;
+  const date = new Date(entry.date + 'T00:00:00Z');
+  return !Number.isNaN(date.valueOf()) && date.toISOString().slice(0, 10) === entry.date;
+}
+function summarize(entries, month) {
+  const records = entries.filter(e => e.date.startsWith(month + '-')).sort((a,b) => b.date.localeCompare(a.date));
+  const income = records.filter(e => e.type === 'income').reduce((s,e) => s + e.amount,0);
+  const expense = records.filter(e => e.type === 'expense').reduce((s,e) => s + e.amount,0);
+  const breakdown = {};
+  for (const e of records) if(e.type === 'expense') breakdown[e.category] = (breakdown[e.category] || 0) + e.amount;
+  return {records, income, expense, balance: income - expense, breakdown};
+}
+function validEntries(data) {
+  return Array.isArray(data) && data.every(validEntry) && new Set(data.map(e=>e.id)).size === data.length;
+}
+function validBudgets(data) {
+  return data !== null && typeof data === 'object' && !Array.isArray(data) && Object.entries(data).every(([month,amount]) => /^\d{4}-(0[1-9]|1[0-2])$/.test(month) && Number.isSafeInteger(amount) && amount > 0 && amount <= 999999999);
+}
+function parseBackup(text) {
+  const data=JSON.parse(text);
+  const entries=Array.isArray(data)?data:data?.entries;
+  const budgets=Array.isArray(data)?{}:data?.budgets;
+  if(!validEntries(entries) || !validBudgets(budgets)) throw new Error('Invalid backup');
+  return {entries,budgets};
+}
+function toCSV(entries) {
+  const cell=value=>'"'+String(value).replace(/^[=+@\-\t\r]/,"'$&").replaceAll('"','""')+'"';
+  return '\uFEFF'+[['日付','種類','カテゴリー','金額（円）','メモ'],...entries.map(e=>[e.date,e.type==='income'?'収入':'支出',e.category,e.amount,e.memo])].map(row=>row.map(cell).join(',')).join('\r\n');
+}
+
+const $ = id => document.getElementById(id);
+const money = value => new Intl.NumberFormat('ja-JP',{style:'currency',currency:'JPY'}).format(value);
+const now = new Date();
+const today = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+const key = 'kotsukotsu-kakeibo-v2';
+let entries = [], budgets = {}, editingId = null;
+let storageOK = true;
+try {
+  const raw = localStorage.getItem(key);
+  if(raw !== null) {
+    ({entries,budgets}=parseBackup(raw));
+  } else {
+    const legacy=localStorage.getItem('kotsukotsu-kakeibo-v1') ?? localStorage.getItem('kotsukotsu-windows-v1');
+    if(legacy !== null){entries=JSON.parse(legacy);if(!validEntries(entries)) throw new Error('Invalid data');}
+  }
+} catch {
+  storageOK = false;
+  $('message').textContent = '保存データを読み込めませんでした。データ保護のため変更を停止しています。バックアップから復元できます。';
+}
+$('month').value = today.slice(0,7);
+$('date').value = today;
+function updateCategories() {
+  const type = document.querySelector('input[name=type]:checked').value;
+  $('category').replaceChildren(...categories[type].map(c => new Option(c,c)));
+}
+document.querySelectorAll('input[name=type]').forEach(el=>el.addEventListener('change',updateCategories));
+updateCategories();
+function save(next, nextBudgets=budgets, recovering=false) {
+  if(!storageOK && !recovering) return false;
+  try {
+    localStorage.setItem(key, JSON.stringify({version:2,entries:next,budgets:nextBudgets}));
+    entries=next;budgets=nextBudgets;storageOK=true;return true;
+  } catch {$('message').textContent='保存できませんでした。ブラウザの保存容量や設定を確認してください。';return false;}
+}
+function resetForm(){
+  editingId=null;$('form-title').textContent='お金を記録する';
+  document.querySelector('button[type=submit]').textContent='＋ 記録を追加';
+  $('cancel-edit').hidden=true;$('amount').value='';$('memo').value='';
+}
+function element(tag, className, text) {
+  const el=document.createElement(tag);el.className=className;if(text !== undefined) el.textContent=text;return el;
+}
+const icons = {'食費':'🍚','日用品':'🧺','交通費':'🚃','住居費':'🏠','水道・光熱費':'💡','娯楽':'☕','医療・健康':'🌿','給与':'💼','副収入':'🌱','その他':'📝'};
+let pendingDelete;
+function render() {
+  const {records,income,expense,balance,breakdown}=summarize(entries,$('month').value);
+  $('income').textContent=money(income);$('expense').textContent=money(expense);$('balance').textContent=money(balance);$('count').textContent=`${records.length}件`;
+  $('breakdown').replaceChildren();
+  const groups=Object.entries(breakdown).sort((a,b)=>b[1]-a[1]);
+  if(!groups.length) $('breakdown').append(element('p','empty','まだ支出の記録がありません。最初の一件を追加しましょう。'));
+  for(const [category,total] of groups){
+    const row=element('div','break-row');const label=element('div','break-label');
+    label.append(element('span','',`${icons[category]} ${category}`),element('span','',`${money(total)} · ${Math.round(total/expense*100)}%`));
+    const bar=element('div','bar');const fill=element('span','');fill.style.width=`${total/expense*100}%`;bar.append(fill);row.append(label,bar);$('breakdown').append(row);
+  }
+  const query=$('search').value.trim().toLocaleLowerCase('ja');
+  const filtered=records.filter(r=>($('filter').value==='all'||r.type===$('filter').value) && (r.category+' '+r.memo).toLocaleLowerCase('ja').includes(query));
+  $('filter-count').textContent=`${filtered.length}件を表示 / この月の全${records.length}件`;
+  const budget=budgets[$('month').value];
+  $('budget').value=budget||'';
+  $('budget-status').textContent=budget?`消化率 ${Math.round(expense/budget*100)}%`:'予算未設定';
+  $('budget-remaining').textContent=budget?(expense>budget?`予算を${money(expense-budget)}超えています`:`あと${money(budget-expense)}使えます`):'予算を設定すると、残りの金額を確認できます。';
+  $('budget-remaining').className=budget&&expense>budget?'over-budget':'';
+  $('budget-progress').style.width=budget?`${Math.min(100,expense/budget*100)}%`:'0%';
+  $('budget-progress').style.background=budget&&expense>budget?'#bf7060':'';
+  $('budget-form').querySelectorAll('button').forEach(b=>b.disabled=!storageOK);
+  $('backup').disabled=!storageOK;
+  $('history').replaceChildren();
+  if(!filtered.length){const empty=element('div','empty');empty.append(element('span','empty-icon','▤'),document.createTextNode(records.length?'条件に一致する記録がありません。':'この月の記録はまだありません。'));$('history').append(empty);}
+  for(const record of filtered){
+    const row=element('div','record');const text=element('div','record-text');text.append(element('strong','',record.category),element('p','',`${record.date.replaceAll('-','/')} ${record.memo}`));
+    const button=element('button','delete','削除');button.type='button';button.disabled=!storageOK;button.setAttribute('aria-label',`${record.date} ${record.category} ${record.amount}円の記録を削除`);
+    button.addEventListener('click',()=>{pendingDelete=record.id;$('delete-dialog').showModal();});
+    const edit=element('button','edit','編集');edit.type='button';edit.disabled=!storageOK;
+    edit.setAttribute('aria-label',`${record.date} ${record.category} ${record.amount}円の記録を編集`);
+    edit.addEventListener('click',()=>{
+      editingId=record.id;
+      document.querySelector(`input[name=type][value=${record.type}]`).checked=true;
+      updateCategories();$('category').value=record.category;$('date').value=record.date;
+      $('amount').value=record.amount;$('memo').value=record.memo;
+      $('form-title').textContent='記録を編集する';
+      document.querySelector('button[type=submit]').textContent='変更を保存';
+      $('cancel-edit').hidden=false;$('amount').focus();
+    });
+    const actions=element('div','record-actions');actions.append(edit,button);
+    row.append(element('span','record-icon',icons[record.category]),text,element('span',`record-amount ${record.type==='income'?'positive':''}`,`${record.type==='income'?'+':'−'}${money(record.amount)}`),actions);$('history').append(row);
+  }
+  document.querySelector('button[type=submit]').disabled=!storageOK;
+}
+$('entry-form').addEventListener('submit',event=>{
+  event.preventDefault();
+  const record={id:editingId || (globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`),type:document.querySelector('input[name=type]:checked').value,date:$('date').value,amount:Number($('amount').value),category:$('category').value,memo:$('memo').value.trim()};
+  if(!validEntry(record)){$('message').textContent='日付と金額を確認してください。金額は1円以上の整数で入力してください。';return;}
+  if(!storageOK)return;
+  const next=editingId?entries.map(e=>e.id===editingId?record:e):[...entries,record];
+  if(save(next)){$('month').value=record.date.slice(0,7);resetForm();$('message').textContent='記録を保存しました。';render();}
+});
+$('month').addEventListener('change',()=>{if($('month').value)render();});
+$('cancel-delete').addEventListener('click',()=>$('delete-dialog').close());
+$('confirm-delete').addEventListener('click',()=>{if(save(entries.filter(e=>e.id!==pendingDelete))){if(editingId===pendingDelete)resetForm();render();$('message').textContent='記録を削除しました。';}$('delete-dialog').close();});
+
+$('cancel-edit').addEventListener('click',resetForm);
+$('search').addEventListener('input',render);
+$('filter').addEventListener('change',render);
+$('budget-form').addEventListener('submit',event=>{
+  event.preventDefault();
+  const next={...budgets,[$('month').value]:Number($('budget').value)};
+  if(!validBudgets(next)){$('data-message').textContent='予算は1円以上の整数で設定してください。';return;}
+  if(save(entries,next)){$('data-message').textContent='予算を保存しました。';render();}
+});
+$('clear-budget').addEventListener('click',()=>{
+  const next={...budgets};delete next[$('month').value];
+  if(save(entries,next)){render();$('data-message').textContent='この月の予算を解除しました。';}
+});
+function download(content,type,name){
+  const url=URL.createObjectURL(new Blob([content],{type}));
+  const a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),30000);
+}
+$('backup').addEventListener('click',()=>{
+  download(JSON.stringify({version:2,entries,budgets},null,2),'application/json',`家計簿バックアップ-${today}.json`);
+});
+$('csv').addEventListener('click',()=>{
+  download(toCSV(summarize(entries,$('month').value).records),'text/csv;charset=utf-8',`家計簿-${$('month').value}.csv`);
+});
+let pendingRestore=null;
+$('restore').addEventListener('click',()=>$('restore-file').click());
+$('restore-file').addEventListener('change',async()=>{
+  const file=$('restore-file').files[0];if(!file)return;
+  try {
+    if(file.size>10*1024*1024)throw new Error('Too large');
+    pendingRestore=parseBackup(await file.text());
+    $('restore-summary').textContent=`記録 ${pendingRestore.entries.length}件、予算 ${Object.keys(pendingRestore.budgets).length}か月分を復元します。`;
+    $('restore-dialog').showModal();
+  } catch {$('data-message').textContent='有効な家計簿バックアップ（10MB以下）を選んでください。現在の記録は変更していません。';}
+  $('restore-file').value='';
+});
+$('cancel-restore').addEventListener('click',()=>{pendingRestore=null;$('restore-dialog').close();});
+$('restore-dialog').addEventListener('cancel',()=>{pendingRestore=null;});
+$('confirm-restore').addEventListener('click',()=>{
+  if(pendingRestore && save(pendingRestore.entries,pendingRestore.budgets,true)){
+    resetForm();render();$('message').textContent='';$('data-message').textContent='バックアップを復元しました。';
+  }
+  pendingRestore=null;$('restore-dialog').close();
+});
+window.addEventListener('storage',event=>{
+  if(event.key===key || event.key===null){
+    storageOK=false;render();$('message').textContent='別の画面で保存データが変更されました。上書きを防ぐため、ページを再読み込みしてください。';
+  }
+});
+render();
+
+</script></body></html>
